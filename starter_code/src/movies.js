@@ -23,33 +23,37 @@
   return array;
 }
 turnHoursToMinutes(movies); */
-
-var newMovies = movies.map(
-  function turnHoursToMinutes(array) {
-    var duration = 0;
-    var durationStr ='';
-    array.forEach(element => {
-      console.log(element.duration);
-      if(element.duration.includes(' ')) {
-        var durationStr = element.duration.split(' ');
-        if (durationStr.lenght > 0) {
-          duration = (durationStr[0].replace('h', '') * 60) + (durationStr[1].replace('min', '') * 1)
-        } else {
-          if(durationStr[0].includes('h')){
-            duration = (durationStr[0].replace('h', '') * 60);
-          } else{
-            duration = durationStr[0].replace('min', '') * 1;
+function turnHoursToMinutes(movies) {
+  return movies.map(
+    function(movie) {
+      var mvDuration = 0;
+      var durationStr ='';
+        if(movie.duration.includes(' ')) {
+          durationStr = movie.duration.split(' ');
+          if (durationStr.lenght > 0) {
+            mvDuration = (durationStr[0].replace('h', '') * 60) + (durationStr[1].replace('min', '') * 1)
+          } else {
+            if(durationStr[0].includes('h')){
+              mvDuration = (durationStr[0].replace('h', '') * 60);
+            } else{
+              mvDuration = durationStr[0].replace('min', '') * 1;
+            }
           }
         }
-        element.duration = duration;
-        console.log(element.duration + ' -> convertido');
-      }
-    }
-    );
-    return array;
-  })
-turnHoursToMinutes(movies);
-
+        var newMovie = {
+          title: movie.title,
+          year: movie.year,
+          director: movie.director,
+          duration: mvDuration,
+          genre: movie.genre,
+          rate: movie.rate,
+        };
+        console.log(newMovie);
+        return newMovie;
+      });
+      ;
+    }    
+  
 // Get the average of all rates with 2 decimals 
 
 
